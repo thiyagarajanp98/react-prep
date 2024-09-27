@@ -4,20 +4,25 @@ import { fetchLaunchData } from '../redux/apiSlice';
 
 const home = () => {
   const dispatch = useDispatch();
-  const { data, loading, error } = useSelector((state) => state.launch);
+  const { launchData, loading, error } = useSelector((state) => state.launch);
+// console.log(launchData)
 
+  // const sortedAlbums = Object.entries(launchData['modules']).sort((a, b) => a.position - b.position);
+  // console.log(sortedAlbums)
   useEffect(() => {
     dispatch(fetchLaunchData()); // Dispatch the action to fetch data
+
+    // dispatch(fetchAutocompleteData('leo'));
   }, [dispatch]);
 
   return (
     <div>
       {loading && <p>Loading...</p>} {/* Show loading message */}
       {error && <p>Error: {error}</p>} {/* Show error message */}
-      {data && (
+      {launchData && (
         <div>
           {/* Render the fetched data */}
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <pre>{JSON.stringify(launchData, null, 2)}</pre>
         </div>
       )}
     </div>
