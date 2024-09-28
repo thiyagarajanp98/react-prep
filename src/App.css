@@ -1,0 +1,126 @@
+/* Header container */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #282c34;
+  color: white;
+  position: relative;
+  /* z-index: 2; Ensure it's above the popup */
+}
+
+/* Logo styling */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Search button container */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  text-align: right;
+}
+
+/* Search button */
+.search-button {
+  background-color: #61dafb;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #21a1f1;
+}
+
+/* Full-screen popup window */
+.full-screen-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  /* z-index: 1; Ensure it overlays everything */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Centered content in the popup */
+.popup-content {
+  color: #282c34;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 80px; /* Push the search box down slightly from the top */
+  text-align: center; /* Center text and elements */
+}
+
+/* Popup search box aligned at the top center */
+.popup-search-box {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px; /* Space between the search box and the results */
+}
+
+/* Search results */
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.search-results li {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+}
+
+/* No results message */
+.no-results {
+  color: #666;
+  font-size: 18px;
+}
+
+/* Close popup button */
+.close-popup {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-popup:hover {
+  background-color: #ff3333;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .popup-search-box {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .search-results {
+    max-width: 100%;
+  }
+}
