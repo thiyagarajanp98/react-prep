@@ -16,7 +16,7 @@ const home = () => {
     // dispatch(fetchAutocompleteData('leo'));
   }, [dispatch]);
 
-  // console.log(typeof launchData.new_trending)
+  console.log(launchData)
 
   return (
     <div>
