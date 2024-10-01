@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLaunchData } from '../redux/apiSlice';
+import AlbumContainer from './AlbumContainer';
 
 const home = () => {
   const dispatch = useDispatch();
   const { launchData, loading, error } = useSelector((state) => state.launch);
-// console.log(launchData)
+  // console.log(launchData)
 
   // const sortedAlbums = Object.entries(launchData['modules']).sort((a, b) => a.position - b.position);
   // console.log(sortedAlbums)
@@ -15,16 +16,20 @@ const home = () => {
     // dispatch(fetchAutocompleteData('leo'));
   }, [dispatch]);
 
+  // console.log(typeof launchData.new_trending)
+
   return (
     <div>
       {loading && <p>Loading...</p>} {/* Show loading message */}
       {error && <p>Error: {error}</p>} {/* Show error message */}
-      {launchData && (
-        <div>
-          {/* Render the fetched data */}
-          <pre>{JSON.stringify(launchData, null, 2)}</pre>
-        </div>
-      )}
+      {launchData && Object.keys(launchData).length > 0 ? (
+        <>
+          {Object.keys(launchData).map((key, index) => (
+            <AlbumContainer key={index} titles={key} launchData={launchData[key]} />
+          ))}
+        </>
+      ) : null}
+
     </div>
   );
 };

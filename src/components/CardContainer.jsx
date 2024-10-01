@@ -1,12 +1,12 @@
 import React from "react";
 import './CardContainer.css';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const CardContainer = ({ launchData }) => {
   return (
     <div className="card-container">
       {launchData.map((album, index) => (
-        <Link to="/album" state={album}key={index}>
-          <span >
+        // <Link to="/album" state={album}key={index}>
+          <span key={index}>
             <div className="album-card">
               <img src={album.image.replace('150x150.jpg', '500x500.jpg')} alt={album.title} className="album-image" />
             </div>
@@ -14,7 +14,7 @@ const CardContainer = ({ launchData }) => {
               {album.title.replaceAll('&quot;', '"')}
             </span>
           </span>
-        </Link>
+        // </Link>
       ))}
     </div>
   );
