@@ -18,7 +18,7 @@
   font-family: 'Poppins', sans-serif;
   /* text-transform: uppercase; */
   background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   /* Subtle shadow for depth */
