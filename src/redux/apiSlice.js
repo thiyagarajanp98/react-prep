@@ -32,7 +32,12 @@ const apiSlice = createSlice({
     loading: false,  // Loading state
     error: null,     // Error state
   },
-  reducers: {},
+  reducers: {
+    // Add a reducer for clearing autocomplete data
+    clearAutocompleteData: (state) => {
+      state.autocompleteData = null; // Reset autocomplete data to null
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchLaunchData.pending, (state) => {
@@ -63,6 +68,7 @@ const apiSlice = createSlice({
       });
   },
 });
+export const { clearAutocompleteData } = apiSlice.actions;
 
 // Export the reducer to add it to the store
 export default apiSlice.reducer;

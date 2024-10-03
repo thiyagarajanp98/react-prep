@@ -1,4 +1,4 @@
-body{
+body {
   background-color: black;
 }
 
@@ -9,10 +9,12 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #282c34;
+  /* background-color: #282c34; */
   color: white;
   position: relative;
   /* z-index: 2; Ensure it's above the popup */
+  border-bottom: solid;
+  border-width: thin;
 }
 
 /* Logo styling */
@@ -24,25 +26,15 @@ body{
 /* Search button container */
 .search-container {
   position: relative;
-  width: 100%;
+  width: 2%;
   max-width: 400px;
-  text-align: right;
-}
-
-/* Search button */
-.search-button {
-  background-color: #61dafb;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.search-button:hover {
-  background-color: #21a1f1;
+
+.search-container:hover {
+  color: #21a1f1;
 }
 
 /* Full-screen popup window */
@@ -63,19 +55,23 @@ body{
 .popup-content {
   color: #282c34;
   width: 100%;
-  max-width: 600px;
-  margin-top: 80px; /* Push the search box down slightly from the top */
-  text-align: center; /* Center text and elements */
+  /* max-width: 600px; */
+  margin-top: 80px;
+  /* Push the search box down slightly from the top */
+  text-align: center;
+  /* Center text and elements */
+  overflow-y: auto;
 }
 
 /* Popup search box aligned at the top center */
 .popup-search-box {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   font-size: 20px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  margin-bottom: 20px; /* Space between the search box and the results */
+  margin-bottom: 20px;
+  /* Space between the search box and the results */
 }
 
 /* Search results */

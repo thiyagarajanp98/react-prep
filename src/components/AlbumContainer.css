@@ -27,7 +27,8 @@
 
 @media (max-width: 768px) {
   .album-title {
-    font-size: 20px; /* For tablet-sized devices and above */
+    font-size: 20px;
+    /* For tablet-sized devices and above */
   }
 }
 

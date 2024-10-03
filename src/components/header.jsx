@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAutocompleteData } from '../redux/apiSlice';
+import { fetchAutocompleteData,clearAutocompleteData  } from '../redux/apiSlice';
 import '../App.css'
 const header = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // To track popup state
@@ -24,6 +24,13 @@ const header = () => {
     }
   };
 
+  const handleClear = () => {
+    console.log("handleclear")
+    dispatch(clearAutocompleteData()); // Dispatch the clear action
+    setIsPopupOpen(false)
+  };
+
+
   // Focus the search input when the popup opens
   useEffect(() => {
     if (isPopupOpen && searchInputRef.current) {
@@ -37,10 +44,15 @@ const header = () => {
       <div className="logo">MyApp</div>
 
       {/* Search Button in the Header */}
-      <div className="search-container">
+      {/* <div className="search-container">
         <button className="search-button" onClick={() => setIsPopupOpen(true)}>
           Search
         </button>
+      </div> */}
+      <div className="search-container">
+        <div className="search-icon" onClick={() => setIsPopupOpen(true)}>
+          <i className="fas fa-search"></i> {/* Font Awesome search icon */}
+        </div>
       </div>
 
       {/* Full-Screen Popup */}
@@ -70,7 +82,7 @@ const header = () => {
             {/* Close Button to Exit the Popup */}
             <button
               className="close-popup"
-              onClick={() => setIsPopupOpen(false)}
+              onClick={() => handleClear()}
             >
               Close
             </button>
