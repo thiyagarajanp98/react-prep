@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLaunchData } from '../redux/apiSlice';
 import AlbumContainer from './AlbumContainer';
+import Loading from './Loading';
 
 const home = () => {
   const dispatch = useDispatch();
@@ -16,11 +17,11 @@ const home = () => {
     // dispatch(fetchAutocompleteData('leo'));
   }, [dispatch]);
 
-  console.log(launchData)
+  // console.log(launchData)
 
   return (
-    <div>
-      {loading && <p>Loading...</p>} {/* Show loading message */}
+    <div style={{ height: '100vh' }}>
+      {loading && <Loading />} {/* Show loading message */}
       {error && <p>Error: {error}</p>} {/* Show error message */}
       {launchData && Object.keys(launchData).length > 0 ? (
         <>

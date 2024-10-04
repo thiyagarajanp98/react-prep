@@ -1,0 +1,40 @@
+.loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    transition: 2s ease;
+    cursor: progress;
+    height: 80%;
+}
+
+.loading-wrapper:hover {
+    transform: scale(1.2);
+}
+
+.text {
+    color: white;
+    font-weight: 800;
+}
+
+.dot {
+    background: white;
+    height: 0.65em;
+    width: 0.65em;
+    border-radius: 50%;
+    animation: move 0.6s ease infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(50%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(50%);
+    }
+}
