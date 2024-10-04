@@ -1,35 +1,35 @@
 /* Header container */
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    /* background-color: #282c34; */
-    color: white;
-    position: relative;
-    /* z-index: 2; Ensure it's above the popup */
-    border-bottom: solid;
-    border-width: thin;
-  }
-  
-  /* Logo styling */
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  /* Search button container */
-  .search-container {
-    position: relative;
-    width: 2%;
-    max-width: 400px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  
-  .search-container:hover {
-    color: #21a1f1;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: -webkit-fill-available;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Logo styling */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Search button container */
+.search-container {
+  position: relative;
+  width: 2%;
+  max-width: 400px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.search-container:hover {
+  color: #21a1f1;
+}

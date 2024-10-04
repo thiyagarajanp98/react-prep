@@ -20,7 +20,7 @@ const home = () => {
   // console.log(launchData)
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '100vh', marginTop: '58px' }}>
       {loading && <Loading />} {/* Show loading message */}
       {error && <p>Error: {error}</p>} {/* Show error message */}
       {launchData && Object.keys(launchData).length > 0 ? (

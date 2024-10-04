@@ -17,9 +17,8 @@
 }
 
 .popup-content {
-    border-width: thin;
     overflow-x: scroll;
-    border-style: outset;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     background-color: black;
     color: white;
