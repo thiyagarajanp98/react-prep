@@ -73,7 +73,7 @@ const Popup = ({ isOpen, closePopup }) => {
                                 return (<div className="suggestions-box" key={key}>
                                     <div className="suggestions-header">
                                         <h3>{key}</h3>
-                                        <button className="view-all-button">View All</button>
+                                        {key!="Top Results"?<button className="view-all-button">View All</button>:""}
                                     </div>
                                     {autocompleteData[key].data.slice(0, 3).map((value, index) => ( // Limit to 3 items
                                         <div className="suggestions-card" key={index}>
