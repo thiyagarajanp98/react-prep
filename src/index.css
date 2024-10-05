@@ -1,5 +1,5 @@
 body {
-    background-color: black;
-    font-family: 'Poppins', sans-serif;
-    scrollbar-width: none;
-  }
+  background-image: linear-gradient(90deg, #ff5917, #ff0a03);
+  font-family: 'Poppins', sans-serif;
+  scrollbar-width: none;
+}

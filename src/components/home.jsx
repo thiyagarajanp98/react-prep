@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLaunchData } from '../redux/apiSlice';
 import AlbumContainer from './AlbumContainer';
 import Loading from './Loading';
+import Player from './Player';
 
 const home = () => {
   const dispatch = useDispatch();
@@ -20,17 +21,19 @@ const home = () => {
   // console.log(launchData)
 
   return (
-    <div style={{ height: '100vh', marginTop: '58px' }}>
-      {loading && <Loading />} {/* Show loading message */}
-      {error && <p>Error: {error}</p>} {/* Show error message */}
-      {launchData && Object.keys(launchData).length > 0 ? (
-        <>
-          {Object.keys(launchData).map((key, index) => (
-            <AlbumContainer key={index} titles={key} launchData={launchData[key]} />
-          ))}
-        </>
-      ) : null}
-
+    <div style={{ diaplay: 'flex' }}>
+      <div style={{ height: '100vh', marginTop: '58px', width:'75%' }}>
+        {loading && <Loading />} {/* Show loading message */}
+        {error && <p>Error: {error}</p>} {/* Show error message */}
+        {launchData && Object.keys(launchData).length > 0 ? (
+          <>
+            {Object.keys(launchData).map((key, index) => (
+              <AlbumContainer key={index} titles={key} launchData={launchData[key]} />
+            ))}
+          </>
+        ) : null}
+      </div>
+      <Player />
     </div>
   );
 };
