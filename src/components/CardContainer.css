@@ -10,8 +10,6 @@ span {
 .album-card {
   flex-shrink: 0;
   width: 142px;
-  height: 142px;
-  /* background-color: #ffffff; */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -44,7 +42,6 @@ span {
 /* Artist: fully circular image */
 .artist-card {
   width: 142px;
-  height: 142px;
   overflow: hidden;
   transition: transform 0.3s;
 }
@@ -75,4 +72,14 @@ span {
   text-overflow: ellipsis;
   padding: 5% 0%;
   color: white;
+}
+
+@media (min-width: 769px) {
+  .artist-card {
+    width: 180px;
+  }
+
+  .album-card {
+    width: 180px;
+  }
 }
