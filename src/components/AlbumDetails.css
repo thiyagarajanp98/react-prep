@@ -1,0 +1,161 @@
+/* AlbumDetails.css */
+
+.containerStyle {
+    position: relative;
+    height: 91vh;
+    width: 100%;
+    overflow: hidden;
+    left: 0;
+    bottom: 0;
+}
+
+.backgroundImageStyle {
+    background-image: url("https://c.saavncdn.com/275/Raayan-Tamil-2024-20240706124553-500x500.jpg?bch=480042");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(25px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.overlayStyle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Semi-transparent overlay */
+    z-index: 2;
+}
+
+.contentStyle {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+}
+
+/* Container for the whole album section */
+.album-containerstyle {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Styles for the album image */
+.album-imagestyle img {
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Info section next to the album image */
+.album-infostyle {
+    text-align: left;
+    margin-left: 20px;
+}
+
+/* Title */
+.album-infostyle h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Sub-info */
+.album-infostyle p {
+    margin: 5px 0;
+    color: #999;
+}
+
+/* Action buttons container */
+.album-actionsstyle {
+    margin-top: 20px;
+}
+
+/* Play button style */
+.play-button {
+    font-weight: 800;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Other action buttons (like, download, etc.) */
+.action-button {
+    height: 45px;
+    width: 45px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .album-containerstyle {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .album-infostyle {
+        margin-left: 0;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .album-imagestyle img {
+        width: 150px;
+    }
+
+    .play-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .action-button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .album-containerstyle {
+        padding: 10px;
+    }
+    
+
+    .album-infostyle h1 {
+        font-size: 1.5rem;
+    }
+
+    .play-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .action-button {
+        padding: 6px;
+        font-size: 0.7rem;
+    }
+}

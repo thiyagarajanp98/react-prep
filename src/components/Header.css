@@ -9,6 +9,7 @@
   color: white;
   position: fixed;
   top: 0;
+  left: 0;
   width: -webkit-fill-available;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
