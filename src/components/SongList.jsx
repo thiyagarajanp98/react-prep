@@ -1,66 +1,46 @@
 import React from 'react';
 import './SongList.css'; // Import the CSS file
+import { useSelector } from 'react-redux';
 
 const SongList = () => {
-  // Sample data for the songs
-  const songs = [
-    {
-      id: 1,
-      title: 'Adangaatha Asuran',
-      artist: 'A.R. Rahman, Dhanush',
-      album: 'Raayan',
-      duration: '4:09',
-      img: 'https://c.saavncdn.com/275/Raayan-Tamil-2024-20240706124553-500x500.jpg',
-    },
-    {
-      id: 2,
-      title: 'Water Packet',
-      artist: 'Santhosh Narayanan, Shweta Mohan, Gana',
-      album: 'Raayan',
-      duration: '4:06',
-      img: 'https://c.saavncdn.com/275/Raayan-Tamil-2024-20240706124553-500x500.jpg',
-    },
-    {
-      id: 3,
-      title: 'Nee Singam Dhan',
-      artist: 'A.R. Rahman, Sid Sriram',
-      album: 'Pathu Thala (Original Motion Picture Soundtrack)',
-      duration: '4:07',
-      img: 'https://c.saavncdn.com/301/Pathu-Thala-Tamil-2023-20230317121403-500x500.jpg',
-    },
-    {
-      id: 4,
-      title: 'Ale Ale',
-      artist: 'A.R. Rahman, Karthik, Chitra Sivaraman',
-      album: 'Boys',
-      duration: '6:27',
-      img: 'https://c.saavncdn.com/737/Boys-Tamil-2003-20190730173510-500x500.jpg',
-    },
-    {
-      id: 5,
-      title: 'New York Nagaram',
-      artist: 'A.R. Rahman',
-      album: 'Sillunu Oru Kadhal',
-      duration: '6:19',
-      img: 'https://c.saavncdn.com/802/Sillunu-Oru-Kadhal-Tamil-2006-20191214162953-500x500.jpg',
-    },
-  ];
+  const secondsToTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    let timeString = '';
+
+    if (hours > 0) {
+      timeString += `${hours < 10 ? '0' : ''}${hours}:`;
+    }
+    timeString += `${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+
+    return timeString;
+  };
+
+  const { albumDetails, loading, error } = useSelector((state) => state.launch);
+  const artistString = albumDetails.list.map(song => {
+    return song.more_info.artistMap.artists.map(artist => artist.name).join(', ');
+  }); // Join all songs' artist strings into a single string
+
+  console.log(artistString);
 
   return (
     <div className="song-list-container">
-      {songs.map((song, index) => (
+      {albumDetails.list.map((song, index) => (
         <div className="song-row" key={song.id}>
           <div className="song-cover">
-            <img src={song.img} alt={song.title} />
-            <div className="song-title">{song.title}</div>
+            <img src={song.image} alt={song.title} />
+            <div className="song-title">{song.title.replaceAll('&quot;', '"')}</div>
           </div>
           <div className="song-info">
-            <div className="song-artist">{song.artist}</div>
+            <div className="song-artist">{
+              song.more_info.artistMap.primary_artists.map(artist => artist.name).join(', ')
+            }</div>
           </div>
-          <div className="song-album">{song.album}</div>
-          <div className="song-favorite"><i class="fa fa-heart fa-lg" aria-hidden="true"/></div>
-          <div className="song-duration">{song.duration}</div>
-          <div className="song-favorite"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"/></div>
+          {albumDetails.type == 'album' ? "" : <div className="song-album">{song.more_info.album}</div>}
+          <div className="song-favorite"><i class="fa fa-heart fa-lg" aria-hidden="true" /></div>
+          <div className="song-duration">{secondsToTime(+song.more_info.duration)}</div>
+          <div className="song-favorite"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true" /></div>
         </div>
       ))}
     </div>

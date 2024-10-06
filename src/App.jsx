@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "albumdetails",
+    path: "details/:type/:id",
     element: <AlbumDetails />,
   }
 ]);
