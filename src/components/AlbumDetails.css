@@ -2,11 +2,12 @@
 
 .containerStyle {
     position: relative;
-    height: 91vh;
     width: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
     left: 0;
     bottom: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .backgroundImageStyle {
@@ -17,8 +18,7 @@
     filter: blur(25px);
     height: 100%;
     width: 100%;
-    position: absolute;
-    top: 0;
+    position: fixed;
     left: 0;
     z-index: 1;
 }
@@ -48,7 +48,6 @@
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #111;
     color: white;
     border-radius: 8px;
 }
@@ -120,42 +119,15 @@
 
     .album-infostyle {
         margin-left: 0;
-        margin-top: 20px;
         text-align: center;
     }
 
     .album-imagestyle img {
-        width: 150px;
-    }
-
-    .play-button {
-        padding: 8px 16px;
-        font-size: 0.9rem;
+        width: 50%;
     }
 
     .action-button {
         padding: 8px;
         font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .album-containerstyle {
-        padding: 10px;
-    }
-    
-
-    .album-infostyle h1 {
-        font-size: 1.5rem;
-    }
-
-    .play-button {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-
-    .action-button {
-        padding: 6px;
-        font-size: 0.7rem;
     }
 }

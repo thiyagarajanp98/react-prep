@@ -1,5 +1,6 @@
 import React from 'react';
 import './AlbumDetails.css';  // Import the CSS file
+import SongList from './SongList';
 
 const AlbumDetails = () => {
     return (
@@ -27,6 +28,7 @@ const AlbumDetails = () => {
                         </div>
                     </div>
                 </div>
+                <SongList/>
             </div>
 
         </div>

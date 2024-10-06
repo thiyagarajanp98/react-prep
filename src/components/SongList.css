@@ -1,0 +1,118 @@
+/* Container for the song list */
+.song-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Individual song row */
+.song-row {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 1rem;
+}
+
+.song-cover {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Song cover image */
+.song-cover img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Song information (title and artist) */
+.song-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-title {
+    margin-left: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.song-artist {
+    font-size: 0.9rem;
+    color: #999;
+    text-align: left;
+}
+
+/* Song album */
+.song-album {
+    width: 20%;
+    text-align: left;
+    color: #999;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Favorite (heart) icon */
+.song-favorite {
+    width: 5%;
+    text-align: center;
+    cursor: pointer;
+    color: #999;
+    font-size: 1.2rem;
+}
+
+/* Song duration */
+.song-duration {
+    width: 10%;
+    text-align: right;
+    color: #999;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .song-row {
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+    }
+
+
+    .song-album,
+    .song-info,
+    .song-duration {
+        display: none;
+        /* width: 100%;
+      text-align: left;
+      margin-top: 10px; */
+    }
+
+    .song-cover img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .song-info {
+        font-size: 0.8rem;
+    }
+
+    .song-cover img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .song-favorite {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+}
