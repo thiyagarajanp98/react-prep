@@ -17,32 +17,34 @@ const SongList = () => {
     return timeString;
   };
 
-  const { albumDetails, loading, error } = useSelector((state) => state.launch);
-  const artistString = albumDetails.list.map(song => {
-    return song.more_info.artistMap.artists.map(artist => artist.name).join(', ');
-  }); // Join all songs' artist strings into a single string
+  const { Details, loading, error } = useSelector((state) => state.launch);
+  // const artistString = Details.list.map(song => {
+  //   return song.more_info.artistMap.artists.map(artist => artist.name).join(', ');
+  // }); // Join all songs' artist strings into a single string
 
-  console.log(artistString);
+  console.log(Details);
 
   return (
     <div className="song-list-container">
-      {albumDetails.list.map((song, index) => (
-        <div className="song-row" key={song.id}>
-          <div className="song-cover">
-            <img src={song.image} alt={song.title} />
-            <div className="song-title">{song.title.replaceAll('&quot;', '"')}</div>
+      {Details?.list && Array.isArray(Details.list) ? (
+        Details.list.map((song, index) => (
+          <div className="song-row" key={song.id}>
+            <div className="song-cover">
+              <img src={song.image} alt={song.title} />
+              <div className="song-title">{song.title.replaceAll('&quot;', '"')}</div>
+            </div>
+            <div className="song-info">
+              <div className="song-artist">{
+                song.more_info.artistMap.primary_artists.map(artist => artist.name).join(', ')
+              }</div>
+            </div>
+            {Details.type == 'album' ? "" : <div className="song-album">{song.more_info.album}</div>}
+            <div className="song-favorite"><i className="fa fa-heart fa-lg" aria-hidden="true" /></div>
+            <div className="song-duration">{secondsToTime(+song.more_info.duration)}</div>
+            <div className="song-favorite"><i className="fa fa-ellipsis-v fa-lg" aria-hidden="true" /></div>
           </div>
-          <div className="song-info">
-            <div className="song-artist">{
-              song.more_info.artistMap.primary_artists.map(artist => artist.name).join(', ')
-            }</div>
-          </div>
-          {albumDetails.type == 'album' ? "" : <div className="song-album">{song.more_info.album}</div>}
-          <div className="song-favorite"><i class="fa fa-heart fa-lg" aria-hidden="true" /></div>
-          <div className="song-duration">{secondsToTime(+song.more_info.duration)}</div>
-          <div className="song-favorite"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true" /></div>
-        </div>
-      ))}
+        ))
+      ) : ""}
     </div>
   );
 };

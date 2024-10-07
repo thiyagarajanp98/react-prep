@@ -1,4 +1,4 @@
-import AlbumDetails from './components/AlbumDetails';
+import Details from './components/Details';
 import Headers from './components/Header';
 import Player from './components/Player';
 import Home from './components/home';
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "details/:type/:id",
-    element: <AlbumDetails />,
+    element: <Details />,
   }
 ]);
 

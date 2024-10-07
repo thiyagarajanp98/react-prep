@@ -12,7 +12,7 @@ const home = () => {
   // const sortedAlbums = Object.entries(launchData['modules']).sort((a, b) => a.position - b.position);
   // console.log(sortedAlbums)
   useEffect(() => {
-    dispatch(fetchLaunchData()); // Dispatch the action to fetch data
+   !launchData ? dispatch(fetchLaunchData()):""; // Dispatch the action to fetch data
 
     // dispatch(fetchAutocompleteData('leo'));
   }, [dispatch]);

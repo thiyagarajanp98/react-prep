@@ -23,12 +23,25 @@ export const fetchAutocompleteData = createAsyncThunk(
   }
 );
 
-// Create an async thunk for fetching albumDetails from the API
-export const fetchAlbumDetails = createAsyncThunk(
-  'launch/fetchAlbumDetails',
-  async (query) => {
+// Create an async thunk for fetching Details from the API
+export const fetchDetails = createAsyncThunk(
+  'launch/fetchDetails',
+  async ({ type, id }) => {
     const response = await axios.get(
-      `https://m-server-two.vercel.app/album/${query}`
+      `https://m-server-two.vercel.app/details/${id}/${type}`
+    );
+    return response.data; // Return the data to be stored in Redux
+  }
+);
+
+// Create an async thunk for fetching Other Details from the API
+export const fetchOtherDetails = createAsyncThunk(
+  'launch/fetchOtherDetails',
+  async ({title,source,data}) => {
+    console.log(`https://m-server-two.vercel.app/otherDetails/${title}/${source}/${data}`)
+    
+    const response = await axios.get(
+      `https://m-server-two.vercel.app/otherDetails/${title}/${source}/${data}`
     );
     return response.data; // Return the data to be stored in Redux
   }
@@ -40,7 +53,7 @@ const apiSlice = createSlice({
   initialState: {
     launchData: null,      // Initialize data as null
     autocompleteData: null,
-    albumDetails: null,
+    Details: null,
     loading: false,  // Loading state
     error: null,     // Error state
   },
@@ -48,6 +61,9 @@ const apiSlice = createSlice({
     // Add a reducer for clearing autocomplete data
     clearAutocompleteData: (state) => {
       state.autocompleteData = null; // Reset autocomplete data to null
+    },
+    clearDetailsData: (state) => {
+      state.Details = null; // Reset autocomplete data to null
     },
   },
   extraReducers: (builder) => {
@@ -80,21 +96,40 @@ const apiSlice = createSlice({
       });
 
     builder
-      .addCase(fetchAlbumDetails.pending, (state) => {
+      .addCase(fetchDetails.pending, (state) => {
         state.loading = true;  // Set loading state to true when fetching
         state.error = null;    // Reset error state
       })
-      .addCase(fetchAlbumDetails.fulfilled, (state, action) => {
+      .addCase(fetchDetails.fulfilled, (state, action) => {
         state.loading = false;       // Set loading state to false when fetched
-        state.albumDetails = action.payload; // Store the fetched data
+        state.Details = action.payload; // Store the fetched data
       })
-      .addCase(fetchAlbumDetails.rejected, (state, action) => {
+      .addCase(fetchDetails.rejected, (state, action) => {
         state.loading = false;       // Set loading state to false if fetching fails
+        state.error = action.error.message; // Store error message
+      });
+
+    builder
+      .addCase(fetchOtherDetails.pending, (state) => {
+        state.loading = true;  // Set loading state to true when fetching
+        state.error = null;    // Reset error state
+      })
+      .addCase(fetchOtherDetails.fulfilled, (state, action) => {
+        state.loading = false; // Set loading state to false when fetched
+        // Check if Details is an object and merge the fetched data
+        if (state.Details && typeof state.Details === 'object') {
+          state.Details = { ...state.Details, ...action.payload }; // Merge the fetched data
+        } else {
+          state.Details = action.payload; // Set new state if Details is not an object
+        }
+      })
+      .addCase(fetchOtherDetails.rejected, (state, action) => {
+        state.loading = false; // Set loading state to false if fetching fails
         state.error = action.error.message; // Store error message
       });
   },
 });
-export const { clearAutocompleteData } = apiSlice.actions;
+export const { clearAutocompleteData, clearDetailsData } = apiSlice.actions;
 
 // Export the reducer to add it to the store
 export default apiSlice.reducer;
