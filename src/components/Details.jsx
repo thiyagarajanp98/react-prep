@@ -2,14 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import './Details.css';  // Import the CSS file
 import SongList from './SongList';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearDetailsData, fetchDetails, fetchOtherDetails } from '../redux/apiSlice';
+import { clearDetailsData, fetchDetails, fetchOtherDetails, fetchSingleAlbumDetails } from '../redux/apiSlice';
 import { useParams } from 'react-router-dom';
+import OtherDetails from './OtherDetails';
 
 const Details = () => {
     const { type, id } = useParams();
     const dispatch = useDispatch();
     const hasProcessed = useRef(false);
-    const { Details, loading, error } = useSelector((state) => state.launch);
+    const { SingleAlbumDetails,Details, loading, error } = useSelector((state) => state.launch);
     const secondsToTime = (seconds) => {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
@@ -56,6 +57,10 @@ const Details = () => {
             });
             const sortedAlbums = Object.fromEntries(sortedAlbumArray);
 
+            if(!Array.isArray(Details.list)){
+                console.log(Details.more_info.album_url.split('/').pop())
+                dispatch(fetchSingleAlbumDetails({id:Details.more_info.album_url.split('/').pop()}))
+            }
             Object.keys(sortedAlbums).forEach((key) => {
                 if (key !== 'artists' && key !== 'list') {
                     dispatch(
@@ -69,8 +74,9 @@ const Details = () => {
             });
         }
     }, [Details, dispatch]);
-    // console.log("wholedata")
-    // console.log(Details.image)
+    console.log(Details)
+    console.log("____________________________________")
+    console.log(SingleAlbumDetails)
     return (
         <div className="containerStyle">
             <div className="backgroundImageStyle" style={{
@@ -101,7 +107,9 @@ const Details = () => {
                         </div>
                     </div>
                 </div>
-                {Details.hasOwnProperty('list') ? <SongList /> : ""}
+                {/* {Details.hasOwnProperty('list') ? <SongList /> : ""} */}
+                <SongList />
+                <OtherDetails/>
             </div>}
 
         </div>

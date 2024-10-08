@@ -37,11 +37,23 @@ export const fetchDetails = createAsyncThunk(
 // Create an async thunk for fetching Other Details from the API
 export const fetchOtherDetails = createAsyncThunk(
   'launch/fetchOtherDetails',
-  async ({title,source,data}) => {
+  async ({ title, source, data }) => {
     console.log(`https://m-server-two.vercel.app/otherDetails/${title}/${source}/${data}`)
-    
+
     const response = await axios.get(
       `https://m-server-two.vercel.app/otherDetails/${title}/${source}/${data}`
+    );
+    return response.data; // Return the data to be stored in Redux
+  }
+);
+
+export const fetchSingleAlbumDetails = createAsyncThunk(
+  'launch/fetchSingleAlbumDetails',
+  async ({ id }) => {
+    console.log(`https://m-server-two.vercel.app/album/${id}`)
+
+    const response = await axios.get(
+      `https://m-server-two.vercel.app/album/${id}`
     );
     return response.data; // Return the data to be stored in Redux
   }
@@ -54,6 +66,7 @@ const apiSlice = createSlice({
     launchData: null,      // Initialize data as null
     autocompleteData: null,
     Details: null,
+    SingleAlbumDetails: null,
     loading: false,  // Loading state
     error: null,     // Error state
   },
@@ -125,6 +138,20 @@ const apiSlice = createSlice({
       })
       .addCase(fetchOtherDetails.rejected, (state, action) => {
         state.loading = false; // Set loading state to false if fetching fails
+        state.error = action.error.message; // Store error message
+      });
+
+    builder
+      .addCase(fetchSingleAlbumDetails.pending, (state) => {
+        state.loading = true;  // Set loading state to true when fetching
+        state.error = null;    // Reset error state
+      })
+      .addCase(fetchSingleAlbumDetails.fulfilled, (state, action) => {
+        state.loading = false;       // Set loading state to false when fetched
+        state.SingleAlbumDetails = action.payload; // Store the fetched data
+      })
+      .addCase(fetchSingleAlbumDetails.rejected, (state, action) => {
+        state.loading = false;       // Set loading state to false if fetching fails
         state.error = action.error.message; // Store error message
       });
   },
